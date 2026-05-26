@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spinly">
 
-        <!-- MainActivity sekarang jadi LAUNCHER utama -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
