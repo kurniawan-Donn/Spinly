@@ -31,11 +31,12 @@ fun MainRoomScreen(
     onProfile: () -> Unit = {},
     onLeave: () -> Unit = {},
 ) {
-    var itemList by remember { mutableStateOf(mutableListOf<String>()) }
+    var itemList by remember { mutableStateOf(mutableListOf("Makan", "Game", "Nonton")) }
     var showAddDialog by remember { mutableStateOf(false) }
     var spinResult by remember { mutableStateOf("") }
     val spinWheelState = rememberSpinWheelState()
-    val scope = rememberCoroutineScope()  // diperlukan untuk memanggil suspend function
+    val scope = rememberCoroutineScope()
+
 
     val colors = listOf(
         Color(0xFFE63946), Color(0xFF457B9D), Color(0xFF2A9D8F),
@@ -62,8 +63,6 @@ fun MainRoomScreen(
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-
-        // Gunakan SpinWheelCanvas dengan state (tanpa rotationAngle)
         SpinWheelCanvas(
             items = itemList,
             modifier = Modifier

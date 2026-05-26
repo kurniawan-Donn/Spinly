@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.spinly.ui.navigation.SpinAppNavHost
 import com.example.spinly.ui.theme.SpinAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +16,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpinAppTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    SpinAppNavHost()
                 }
             }
         }

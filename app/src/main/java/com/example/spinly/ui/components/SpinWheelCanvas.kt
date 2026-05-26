@@ -1,4 +1,3 @@
-// SpinWheelCanvas.kt
 package com.example.spinly.ui.components
 
 import androidx.compose.animation.core.*
@@ -17,7 +16,6 @@ import androidx.compose.ui.unit.dp
 fun SpinWheelCanvas(
     items: List<String>,
     modifier: Modifier = Modifier,
-    size: Dp = 280.dp,
     state: SpinWheelState = rememberSpinWheelState(),
     onSpinEnd: (String) -> Unit = {},
 ) {
@@ -37,8 +35,8 @@ fun SpinWheelCanvas(
     val animatedAngle = remember { Animatable(rotationAngle) }
     var isSpinning by remember { mutableStateOf(false) }
 
-    val spinFunction: suspend () -> Unit = {
-        if (isSpinning || sectorCount == 0) return@let
+    suspend fun spin() {
+        if (isSpinning || sectorCount == 0) return
         isSpinning = true
         val randomDegrees = (360 * 3 + (0..360).random()).toFloat()
         val targetRotation = rotationAngle + randomDegrees
@@ -55,31 +53,32 @@ fun SpinWheelCanvas(
     }
 
     LaunchedEffect(Unit) {
-        state.spinAction = spinFunction
+        state.spinAction = { spin() }
     }
 
     Canvas(
-        modifier = modifier.size(size)
+        modifier = modifier
     ) {
+        val center = Offset(size.width / 2, size.height / 2)
+        val radius = minOf(size.width, size.height) / 2
+
         if (sectorCount == 0) {
-            // Gambar lingkaran kosong
             drawCircle(
                 color = Color.Gray,
-                radius = size.toPx() / 2,
+                radius = radius,
                 style = Stroke(width = 4.dp.toPx())
             )
             drawCircle(
                 color = Color.LightGray,
-                radius = size.toPx() / 2 - 8.dp.toPx(),
+                radius = radius - 4.dp.toPx(),
                 style = Stroke(width = 2.dp.toPx())
             )
             return@Canvas
         }
 
-        val center = Offset(size.toPx() / 2, size.toPx() / 2)
-        val radius = size.toPx() / 2
         val startAngle = -animatedAngle.value
 
+        // Gambar sektor
         for (i in 0 until sectorCount) {
             val sweep = anglePerSector
             val start = startAngle + i * sweep
@@ -110,22 +109,43 @@ fun SpinWheelCanvas(
             )
         }
 
+        // Lingkaran tepi
         drawCircle(
             color = Color.White,
             radius = radius,
             style = Stroke(width = 4.dp.toPx())
         )
 
-        // Panah penunjuk di atas
-        val arrowSize = 20.dp.toPx()
+        // Lingkaran tengah
+        drawCircle(
+            color = Color.White,
+            radius = radius * 0.12f,
+            style = Stroke(width = 2.dp.toPx())
+        )
+        drawCircle(
+            color = Color.White,
+            radius = radius * 0.08f,
+            style = Stroke(width = 1.dp.toPx())
+        )
+
+        // Panah penunjuk (di atas, tepat di tengah)
+        val arrowSize = 24.dp.toPx()
+        val arrowTipY = center.y - radius - 8.dp.toPx()
+        val arrowBaseY = center.y - radius + 12.dp.toPx()
         drawPath(
             path = Path().apply {
-                moveTo(center.x - arrowSize / 2, center.y - radius - 10.dp.toPx())
-                lineTo(center.x, center.y - radius - 30.dp.toPx())
-                lineTo(center.x + arrowSize / 2, center.y - radius - 10.dp.toPx())
+                moveTo(center.x - arrowSize / 2, arrowBaseY)
+                lineTo(center.x, arrowTipY)
+                lineTo(center.x + arrowSize / 2, arrowBaseY)
                 close()
             },
             color = Color.White
+        )
+        // Lingkaran kecil di ujung panah
+        drawCircle(
+            color = Color.White,
+            radius = 5.dp.toPx(),
+            center = Offset(center.x, arrowTipY - 2.dp.toPx())
         )
     }
 }
