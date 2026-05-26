@@ -7,7 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.spinly.ui.screens.JoinRoomScreen
 import com.example.spinly.ui.screens.LoginScreen
 import com.example.spinly.ui.screens.MainRoomScreen
-import com.example.spinly.ui.screens.ProfileScreen
+import com.example.spinly.ui.screens.ProfilRoute
 
 object Routes {
     const val LOGIN     = "login"
@@ -28,10 +28,30 @@ fun SpinAppNavHost() {
     ) {
 
         composable(Routes.LOGIN) {
+
             LoginScreen(
+
                 onLoginSuccess = {
-                    navController.navigate(Routes.JOIN_ROOM) {
-                        popUpTo(Routes.LOGIN) { inclusive = true }
+
+                    navController.navigate(
+                        Routes.mainRoom("online")
+                    ) {
+
+                        popUpTo(Routes.LOGIN) {
+                            inclusive = true
+                        }
+                    }
+                },
+
+                onGuestLogin = {
+
+                    navController.navigate(
+                        Routes.mainRoom("offline")
+                    ) {
+
+                        popUpTo(Routes.LOGIN) {
+                            inclusive = true
+                        }
                     }
                 }
             )
@@ -50,9 +70,9 @@ fun SpinAppNavHost() {
         composable(Routes.MAIN_ROOM) { backStackEntry ->
             val roomCode = backStackEntry.arguments?.getString("roomCode") ?: ""
             MainRoomScreen(
-                roomCode  = roomCode,
+                roomCode = roomCode,
                 onProfile = { navController.navigate(Routes.PROFILE) },
-                onLeave   = {
+                onLeave = {
                     navController.navigate(Routes.JOIN_ROOM) {
                         popUpTo(Routes.JOIN_ROOM) { inclusive = true }
                     }
@@ -61,12 +81,13 @@ fun SpinAppNavHost() {
         }
 
         composable(Routes.PROFILE) {
-            ProfileScreen(
-                onBack   = { navController.popBackStack() },
-                onLogout = {
-                    navController.navigate(Routes.LOGIN) {
-                        popUpTo(0) { inclusive = true }
-                    }
+            ProfilRoute(
+                onBackClick = {
+                    navController.popBackStack()
+                },
+
+                onLoginClick = {
+                    navController.navigate(Routes.LOGIN)
                 }
             )
         }

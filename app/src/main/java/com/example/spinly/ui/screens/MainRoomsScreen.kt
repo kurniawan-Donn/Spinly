@@ -24,6 +24,8 @@ import com.example.spinly.ui.components.SpinWheelCanvas
 import com.example.spinly.ui.components.rememberSpinWheelState
 import com.example.spinly.ui.theme.SpinColors
 import kotlinx.coroutines.launch
+import coil.compose.AsyncImage
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun MainRoomScreen(
@@ -36,6 +38,38 @@ fun MainRoomScreen(
     var spinResult by remember { mutableStateOf("") }
     val spinWheelState = rememberSpinWheelState()
     val scope = rememberCoroutineScope()
+    val user = FirebaseAuth.getInstance().currentUser
+
+    val isGuest =
+        user == null || user.isAnonymous
+
+    val displayName =
+        if (isGuest) {
+            "Tamu"
+        } else {
+            user?.displayName ?: "Pengguna"
+        }
+
+    val photoUrl =
+        if (isGuest) {
+            null
+        } else {
+            user?.photoUrl
+        }
+
+    val statusText =
+        if (isGuest) {
+            "OFFLINE MODE"
+        } else {
+            "ONLINE MODE"
+        }
+
+    val statusColor =
+        if (isGuest) {
+            Color(0xFFFFB300)
+        } else {
+            Color(0xFF00C853)
+        }
 
 
     val colors = listOf(
@@ -53,14 +87,129 @@ fun MainRoomScreen(
     ) {
         Spacer(modifier = Modifier.height(40.dp))
 
-        Text(
-            text = "SPINLY",
-            color = SpinColors.TextPrimary,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Column {
+
+                Text(
+
+                    text = "SPINLY",
+
+                    color = SpinColors.TextPrimary,
+
+                    fontSize = 28.sp,
+
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Box(
+                        modifier = Modifier
+                            .size(10.dp)
+                            .clip(CircleShape)
+                            .background(statusColor)
+                    )
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Text(
+
+                        text = statusText,
+
+                        color = statusColor,
+
+                        fontSize = 12.sp,
+
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Column(
+                    horizontalAlignment = Alignment.End
+                ) {
+
+                    Text(
+
+                        text = displayName,
+
+                        color = SpinColors.TextPrimary,
+
+                        fontWeight = FontWeight.Bold,
+
+                        fontSize = 14.sp
+                    )
+
+                    Text(
+
+                        text =
+                            if (isGuest)
+                                "Guest"
+                            else
+                                "Google Account",
+
+                        color = SpinColors.TextSecondary,
+
+                        fontSize = 11.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                if (photoUrl != null) {
+
+                    AsyncImage(
+
+                        model = photoUrl,
+
+                        contentDescription = "Foto Profil",
+
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clip(CircleShape)
+                    )
+
+                } else {
+
+                    Box(
+
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clip(CircleShape)
+                            .background(SpinColors.BgCard),
+
+                        contentAlignment = Alignment.Center
+                    ) {
+
+                        Icon(
+
+                            imageVector =
+                                Icons.Default.AccountCircle,
+
+                            contentDescription = null,
+
+                            tint = SpinColors.TextSecondary,
+
+                            modifier = Modifier.size(42.dp)
+                        )
+                    }
+                }
+            }
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
         SpinWheelCanvas(

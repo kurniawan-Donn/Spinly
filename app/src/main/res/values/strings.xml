@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">SpinApp</string>
 
+    <string name="web_client_id">307071929253-es2gqojqs7kp1ro51avv4qpq808a1lvq.apps.googleusercontent.com</string>
+
     <!-- Main Room -->
     <string name="label_kode_room">Kode Room</string>
     <string name="label_host">Host</string>

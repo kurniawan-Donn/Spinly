@@ -1,6 +1,7 @@
 package com.example.spinly.ui.profil
 
 data class ProfileUiState(
+
     val nama: String = "Tamu",
     val email: String = "",
     val fotoProfil: String? = null,
@@ -10,4 +11,3 @@ data class ProfileUiState(
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 )
-

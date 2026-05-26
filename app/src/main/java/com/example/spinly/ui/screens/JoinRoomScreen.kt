@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -180,20 +181,20 @@ fun JoinRoomScreen(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.weight(1f),
-                color = SpinColors.Divider,
                 thickness = 1.dp,
+                color = SpinColors.Divider
             )
             Text(
                 text = "atau",
                 color = SpinColors.TextSecondary,
                 fontSize = 13.sp,
             )
-            Divider(
+            HorizontalDivider(
                 modifier = Modifier.weight(1f),
-                color = SpinColors.Divider,
                 thickness = 1.dp,
+                color = SpinColors.Divider
             )
         }
 
