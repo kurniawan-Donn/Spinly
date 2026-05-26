@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Background Colors -->
+    <color name="bg_dark">#0D1B2A</color>
+    <color name="bg_card">#1A2940</color>
+    <color name="bg_card_light">#1E3050</color>
+    <color name="bg_input">#162235</color>
+    <color name="bg_drawer">#0F1F30</color>
+
+    <!-- Accent Colors -->
+    <color name="accent_blue">#2E86FF</color>
+    <color name="accent_blue_dark">#1A6FE0</color>
+    <color name="accent_green">#00C853</color>
+    <color name="accent_red">#FF3D3D</color>
+    <color name="accent_orange">#FF9500</color>
+    <color name="accent_yellow">#FFD60A</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8FA8C8</color>
+    <color name="text_hint">#4A6580</color>
+    <color name="text_label">#A0B8D0</color>
+
+    <!-- Spin Wheel Segments -->
+    <color name="wheel_seg1">#E63946</color>  <!-- Makan - Red -->
+    <color name="wheel_seg2">#457B9D</color>  <!-- Belajar - Blue -->
+    <color name="wheel_seg3">#2A9D8F</color>  <!-- Liburan - Teal -->
+    <color name="wheel_seg4">#E9C46A</color>  <!-- Nonton - Yellow -->
+    <color name="wheel_seg5">#F4A261</color>  <!-- Game - Orange -->
+    <color name="wheel_seg6">#6A4C93</color>  <!-- Olahraga - Purple -->
+    <color name="wheel_center">#1A2940</color>
+
+    <!-- Dot Colors for List -->
+    <color name="dot_green">#00C853</color>
+    <color name="dot_yellow">#FFD60A</color>
+    <color name="dot_blue">#2E86FF</color>
+    <color name="dot_purple">#9B59B6</color>
+    <color name="dot_orange">#FF9500</color>
+    <color name="dot_red">#E63946</color>
+
+    <!-- Divider -->
+    <color name="divider">#1E3050</color>
+    <color name="online_dot">#00C853</color>
+
+    <!-- Transparent -->
+    <color name="overlay">#80000000</color>
+    <color name="chat_overlay">#CC0D1B2A</color>
 </resources>

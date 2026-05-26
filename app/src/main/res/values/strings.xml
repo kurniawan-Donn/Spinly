@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpinApp</string>
+
+    <!-- Main Room -->
+    <string name="label_kode_room">Kode Room</string>
+    <string name="label_host">Host</string>
+    <string name="label_anggota">Anggota</string>
+    <string name="btn_putar">PUTAR</string>
+    <string name="btn_spin">SPIN</string>
+    <string name="label_daftar_item">DAFTAR ITEM</string>
+    <string name="label_tambah_daftar">TAMBAH DAFTAR</string>
+    <string name="label_hasil_spin">Hasil Spin</string>
+    <string name="label_online">Online</string>
+
+    <!-- Join Room -->
+    <string name="title_join_room">Join Room</string>
+    <string name="title_masuk_room">Masuk ke Room</string>
+    <string name="desc_join_room">Masukkan kode 6 digit dari host\nuntuk bergabung ke room.</string>
+    <string name="label_kode_room_input">Kode Room</string>
+    <string name="btn_join_room">Join Room</string>
+    <string name="label_atau">atau</string>
+    <string name="btn_buat_room">Buat Room Baru</string>
+    <string name="label_tips">Tips</string>
+    <string name="desc_tips">Tanyakan kode room ke host atau teman kamu.</string>
+
+    <!-- Profile -->
+    <string name="title_profil">Profil</string>
+    <string name="label_data_aman">Data aman &amp; tersinkronisasi</string>
+    <string name="label_data_desc">Semua data kamu terlindungi.</string>
+    <string name="label_riwayat_room">Riwayat Room</string>
+    <string name="btn_keluar">Keluar</string>
+
+    <!-- Members -->
+    <string name="title_anggota">ANGGOTA DALAM ROOM</string>
+
+    <!-- Chat -->
+    <string name="hint_message">Message</string>
+</resources>
